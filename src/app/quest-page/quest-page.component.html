@@ -1,0 +1,93 @@
+<app-loading-spinner *ngIf="showSpinner"> </app-loading-spinner>
+<div class="main-container" *ngIf="!showSpinner" [@fadeInOut]>
+  <app-scheme [@fadeInOut] *ngIf="scheme"></app-scheme>
+  <div *ngIf="hello" class="hello">
+    <h1>Привет{{ studentName ? ", " + studentName : "" }}!</h1>
+
+    <div>
+      <mat-form-field>
+        <input required [(ngModel)]="values['student_name']" matInput placeholder="ФИО" name="student_name">
+      </mat-form-field>
+      <mat-form-field>
+        <input required [(ngModel)]="values['class']" matInput placeholder="Класс" name="class">
+      </mat-form-field>
+    </div>
+    <h3 class="mat-h3" style="margin: 0 10px;text-align: center;max-width:500px;font-size: 18px;">
+      На сегодняшний день мобильные телефоны являются незаменимой частью нашей жизни. Еще каких-то десять лет назад мы и представить
+      не могли насколько будем от них зависимы. Ни на один день мы не сможем отказаться от их использования.
+      <br>
+      <br>Предлагаем вам ответить на вопросы по разным дисциплинам, ответы на которые связаны с мобильным телефоном. Это и математические
+      вопросы, вопросы по химии и биологии, информатике и географии и, естественно, по физике.
+    </h3>
+
+    <button style="margin-top: 20px;" color="accent" (click)="phone = true" [disabled]="!studentName || !studentClass" mat-raised-button
+      type="button">Начать</button>
+  </div>
+
+  <div [@fadeInOut] *ngIf="questOver" class="quest-over">
+    <h1>ПОЗДРАВЛЯЕМ, {{ values['student_name'] }}!
+      <br>Вы прошли тест!</h1>
+    <h2> {{ correctAnswers }}/{{ questionsTotal }} балл(ов) ({{ rating }}%)</h2>
+    <h3 class="mat-h3" style="margin: 0 10px;text-align: center;max-width:500px;font-size: 18px;">
+      Давайте теперь систематизируем наши знания!
+    </h3>
+    <br>
+    <br>
+    <button color="primary" (click)="scheme = true" mat-raised-button type="button">Продолжить</button>
+  </div>
+
+  <div *ngIf="phone" class="quest-container">
+    <div [@fadeInOut] *ngIf="phone" class="questions-container">
+      <ng-container *ngFor="let item of menuItems">
+        <ng-container *ngFor="let question of item.questions">
+          <div class="question" [@questionAnimation] *ngIf="question.id==openedQuestionId">
+            <img style="width:150px;float:left;margin: 20px;" *ngIf="question.image" [src]="question.image" alt="">
+            <h2 class="mat-h2" style="text-align:center;">{{ question.title }}</h2>
+            <mat-radio-group [disabled]="isQuestionCompleted(question.id)" class="questions-list" (change)="onRadioSelect($event)" [(ngModel)]="values['questions'][question.id]"
+              [name]="question.id">
+              <mat-radio-button [class.incorrect]="isQuestionCompleted(question.id) && !option.correct" [class.correct]="isQuestionCompleted(question.id) && option.correct"
+                class="question-option" *ngFor="let option of question.options;let i = index" [value]="option.id">
+                {{ option.title }}
+              </mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <button type="button" [class.hidden]="isQuestionCompleted(question.id)" [disabled]="values['questions'][question?.id]==null"
+              (click)="acceptQuestion(question.id, question.options[values['questions'][question.id]].correct)" mat-raised-button
+              color="primary">Показать правильный ответ</button>
+          </div>
+        </ng-container>
+      </ng-container>
+      <br>
+      <div [hidden]="progress!=100">
+        <button color="accent" (click)="questOver=true" mat-raised-button type="button">Закончить квест</button>
+      </div>
+    </div>
+
+    <div [@phoneAnimation] *ngIf="phone" class="phone-container">
+      <img class="phone" src="/assets/icons/phone.png" alt="">
+      <div class="overlay">
+        <ng-container *ngFor="let item of menuItems">
+          <app-menu-item class="item" [item]="item"></app-menu-item>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <!-- 
+    
+      <br> values: {{ values | json}}
+      <br> openedQuestionId: {{ openedQuestionId }}
+      <br> questionsTotal: {{ questionsTotal }}
+      <br> answeredQuestions: {{ this.questionService.answeredQuestions | json}}
+      <br> progress: {{ progress }}%
+      <br> submitTimer: {{ submitTimer }}
+      <br> timer: {{ timer }}
+     -->
+  <!--   <br> hello: {{ hello}}
+      <br> phone: {{ phone}}
+      <br> questOver: {{ questOver}}
+      <br> scheme: {{ scheme}}
+      <br> rating {{ rating }} -->
+  <!--   <br> values: {{ values | json}}
+      <br> {{correctAnswersCount}}
+      <br> {{rating}} -->
+</div>

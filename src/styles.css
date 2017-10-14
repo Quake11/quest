@@ -1,0 +1,23 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+img {
+    width: inherit;
+}
+
+body {
+    /*  display: flex;
+    justify-content: center;
+    /* background: url(./assets/background.png); */
+    /* height: 100vh; 
+    height: fit-content;*/
+    margin: 0!important;
+    /* min-height: 100vh; */
+}
+
+html {
+    height: 100%;
+    background: #d5e8ed;
+    background: -moz-linear-gradient(top, #d5e8ed 1%, #c2e2ea 45%, #ffffff 100%);
+    background: -webkit-linear-gradient(top, #d5e8ed 1%, #c2e2ea 45%, #ffffff 100%);
+    background: linear-gradient(to bottom, #d5e8ed 1%, #c2e2ea 45%, #ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5e8ed', endColorstr='#ffffff', GradientType=0);
+}

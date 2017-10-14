@@ -1,0 +1,26 @@
+a:hover * {
+    transform: scale(1.05);
+    transition: all .2s ease-in-out;
+}
+
+.item {
+    width: 100%;
+    position: relative;
+}
+
+.item:hover {
+    cursor: pointer;
+}
+
+.count {
+    position: absolute;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    width: 16px;
+    height: 16px;
+    padding: 5px;
+    text-align: center;
+    top: -10px;
+    left: 64px;
+}

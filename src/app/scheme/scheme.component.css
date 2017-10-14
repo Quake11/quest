@@ -1,0 +1,114 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    text-align: center;
+    justify-content: center;
+}
+
+#Phone,
+#BIO,
+#PH,
+#GEO,
+#CH,
+#INF,
+#MATH {
+    cursor: pointer;
+    transform: scale(1);
+    transform-origin: center;
+    transform-box: fill-box;
+    /* transition: .3s ease-in-out; */
+}
+
+#Line_MATH,
+#Line_INF,
+#Line_CH,
+#Line_GEO,
+#Line_PH,
+#Line_BIO {
+    visibility: none;
+    opacity: 0;
+}
+
+#GEO,
+#PH,
+#BIO,
+#CH,
+#INF,
+#MATH {
+    opacity: 0;
+    visibility: none;
+    transform: scale(1);
+}
+
+#block_x5F_GEO,
+#block_x5F_PH,
+#block_x5F_BIO,
+#block_x5F_CH,
+#block_x5F_INF,
+#block_x5F_MATH {
+    opacity: 0;
+    visibility: none;
+    transform: scale(1);
+    transform-origin: center;
+    transform-box: fill-box;
+    transition: transform .5s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+#block_x5F_GEO,
+#block_x5F_PH,
+#block_x5F_BIO {
+    transform: translateX(-750px);
+}
+
+#block_x5F_CH,
+#block_x5F_INF,
+#block_x5F_MATH {
+    transform: translateX(750px);
+}
+
+svg {
+    overflow: visible;
+    min-width: 600px;
+    max-height: 85%;
+}
+
+.active {
+    visibility: visible !important;
+    opacity: 1 !important;
+    /* transform: scale(1) !important; */
+    transition: transform .5s ease-in-out, opacity 1s ease-in-out;
+}
+
+#CH:hover,
+#INF:hover,
+#MATH:hover {
+    /*  display: none; */
+    transform: rotate(2deg) scale(1.05);
+}
+
+#BIO:hover,
+#PH:hover,
+#GEO:hover {
+    transform: rotate(-2deg) scale(1.05);
+}
+
+#Phone:hover {
+    transform: scale(1.05);
+}
+
+#Phone {
+    transition: transform .5s ease-in-out;
+}
+
+.zoomed {
+    transform: scale(1.3) !important;
+}
+
+.opened {
+    /* stroke: rgb(21, 255, 0); */
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}

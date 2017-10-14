@@ -1,0 +1,9 @@
+<a class="item" (click)="onClick($event)">
+  <div style="width:inherit">
+    <img [src]="item.icon" [alt]="item.name">
+    <div *ngIf="questionsRemaining" class="count">
+      {{ questionsRemaining }}
+    </div>
+  </div>
+
+</a>

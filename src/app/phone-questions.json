@@ -1,0 +1,58 @@
+{
+    "menu-items": {
+        "physics": {
+            "name": "Физика",
+            "icon": "https://firebasestorage.googleapis.com/v0/b/phone-questions.appspot.com/o/physics.png?alt=media&token=f2d13dc2-29a4-4de5-b440-1715c97e0906",
+            "questions": [{
+                "id": 1,
+                "title": "Какие волны использует телефон для связи",
+                "options": [{
+                        "id": 1,
+                        "title": "электромагнитная",
+                        "correct": true
+                    },
+                    {
+                        "id": 2,
+                        "title": "морская",
+                        "correct": false
+                    }, {
+                        "id": 3,
+                        "title": "электрическая",
+                        "correct": false
+                    }, {
+                        "id": 4,
+                        "title": "другая",
+                        "correct": false
+                    }
+                ]
+            }]
+        },
+        "math": {
+            "name": "Математика",
+            "icon": "https://firebasestorage.googleapis.com/v0/b/phone-questions.appspot.com/o/math.png?alt=media&token=06c5cc02-1659-4189-a96a-b7bb832af0c5",
+            "questions": [{
+                "title": "2*2",
+                "id": 2,
+                "options": [{
+                        "id": 1,
+                        "title": "4",
+                        "correct": true
+                    },
+                    {
+                        "id": 2,
+                        "title": "5",
+                        "correct": false
+                    }, {
+                        "id": 3,
+                        "title": "6",
+                        "correct": false
+                    }, {
+                        "id": 4,
+                        "title": "7",
+                        "correct": false
+                    }
+                ]
+            }]
+        }
+    }
+}
