@@ -58,8 +58,6 @@ export class QuestPageComponent implements OnInit {
   ngOnInit() {
     this.questionService.currentQuestion.subscribe(message => this.openedQuestionId = message);
     this.questionService.questionsTotal.subscribe(message => this.questionsTotal = message);
-    //let timer = TimerObservable.create(0, 1000);
-    //timer.subscribe(t => this.timer = t);
   }
 
   _hello: boolean = true;
@@ -135,8 +133,6 @@ export class QuestPageComponent implements OnInit {
 
   showSpinner: boolean = true;
 
-  //timer = 0;
-  //submitTimer = 0;
 
   menuItems: any[];
   openedQuestionId: number;
@@ -144,13 +140,6 @@ export class QuestPageComponent implements OnInit {
   questionsTotal: number;
 
   correctAnswers: number = 0;
-  //questionsCompleted: number;
-
-  /*   get rating() {
-      let rating = Math.round(this.correctAnswers / this.questionsTotal * 100).toFixed(2);
-      this.values['rating'] = rating;
-      return rating;
-    } */
 
   values = {
     student_name: null,
@@ -180,15 +169,7 @@ export class QuestPageComponent implements OnInit {
 
 
   onSubmit() {
-    console.log("onSubmit: " + this.values);
-    //this.submitTimer = this.timer + this.SUBMIT_COOLDOWN; // кулдаун, нужен когда отправляем через кнопку
     this.db.list('/answers').push(this.values);
-  }
-
-  onRadioSelect(e) {
-    //console.log(e);
-    //console.log(this.answeredQuestions);
-
   }
 
   acceptQuestion(id, option) {
@@ -197,13 +178,10 @@ export class QuestPageComponent implements OnInit {
       this.questionService.updateCorrectAnswers(1);
     }
     this.questionService.changeAnswered(id);
-    //console.log(this.questionService.answeredQuestions);
+
     if (this.progress == 100) {
       this.onSubmit();
-      //this.questOver = true;
     }
-    console.log("id:" + id + " option:" + option);
-
   }
 
 

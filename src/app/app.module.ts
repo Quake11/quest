@@ -1,6 +1,5 @@
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { QuestionsService } from './questions.service';
 import { QuestionService } from './question.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
@@ -58,7 +57,7 @@ import { MatTableModule } from '@angular/material';
     MatInputModule,
     MatTableModule
   ],
-  providers: [QuestionService, QuestionsService],
+  providers: [QuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

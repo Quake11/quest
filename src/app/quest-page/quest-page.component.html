@@ -43,7 +43,7 @@
           <div class="question" [@questionAnimation] *ngIf="question.id==openedQuestionId">
             <img style="width:150px;float:left;margin: 20px;" *ngIf="question.image" [src]="question.image" alt="">
             <h2 class="mat-h2" style="text-align:center;">{{ question.title }}</h2>
-            <mat-radio-group [disabled]="isQuestionCompleted(question.id)" class="questions-list" (change)="onRadioSelect($event)" [(ngModel)]="values['questions'][question.id]"
+            <mat-radio-group [disabled]="isQuestionCompleted(question.id)" class="questions-list" [(ngModel)]="values['questions'][question.id]"
               [name]="question.id">
               <mat-radio-button [class.incorrect]="isQuestionCompleted(question.id) && !option.correct" [class.correct]="isQuestionCompleted(question.id) && option.correct"
                 class="question-option" *ngFor="let option of question.options;let i = index" [value]="option.id">

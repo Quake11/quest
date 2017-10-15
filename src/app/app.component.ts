@@ -9,9 +9,6 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { style, state, animate, transition, trigger } from '@angular/core';
 import { Subscription } from "rxjs/Subscription";
 
-
-/* import { data } from './data'; */
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

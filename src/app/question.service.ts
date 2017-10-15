@@ -14,8 +14,6 @@ export class QuestionService {
 
   answeredQuestions = {};
 
-
-
   private correctAnswers = new BehaviorSubject<number>(0);
 
   getCorrectAnswers() {
@@ -24,7 +22,6 @@ export class QuestionService {
 
   getRating() {
     return this.correctAnswers;
-    //return rating;
   }
 
   updateCorrectAnswers(num) {
@@ -43,8 +40,6 @@ export class QuestionService {
 
   changeAnswered(id: number, bool: boolean = true) {
     this.answeredQuestions[id] = bool;
-    console.log(this.answeredQuestions);
-
   }
 
 
@@ -61,8 +56,6 @@ export class QuestionService {
     questions.forEach(element => {
       this.isQuestionsCompleted(element.id) ? remaining-- : remaining;
     });
-    //console.log(questions);
     return remaining;
   }
-
 }
