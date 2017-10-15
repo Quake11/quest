@@ -70,8 +70,7 @@
 
 svg {
     overflow: visible;
-    min-width: 600px;
-    max-height: 85%;
+    max-height: 80vh;
 }
 
 .active {
