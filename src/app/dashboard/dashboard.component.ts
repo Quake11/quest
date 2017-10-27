@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
+import { MatSort } from '@angular/material';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -24,17 +25,18 @@ export class DashboardComponent implements OnInit {
   exampleDatabase = new ExampleDatabase(this.db);
   dataSource: ExampleDataSource | null;
 
-  @ViewChild('filter') filter: ElementRef;
+  //@ViewChild('filter') filter: ElementRef;
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-    this.dataSource = new ExampleDataSource(this.exampleDatabase);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.sort);
+/*     Observable.fromEvent(this.filter.nativeElement, 'keyup')
       .debounceTime(150)
       .distinctUntilChanged()
       .subscribe(() => {
         if (!this.dataSource) { return; }
         this.dataSource.filter = this.filter.nativeElement.value;
-      });
+      }); */
   }
 
 }
@@ -96,11 +98,11 @@ export class ExampleDatabase {
  * should be rendered.
  */
 export class ExampleDataSource extends DataSource<any> {
-  _filterChange = new BehaviorSubject('');
+/*   _filterChange = new BehaviorSubject('');
   get filter(): string { return this._filterChange.value; }
   set filter(filter: string) { this._filterChange.next(filter); }
-
-  constructor(private _exampleDatabase: ExampleDatabase) {
+ */
+  constructor(private _exampleDatabase: ExampleDatabase, private _sort: MatSort) {
     super();
   }
 
@@ -108,14 +110,62 @@ export class ExampleDataSource extends DataSource<any> {
   connect(): Observable<UserData[]> {
     const displayDataChanges = [
       this._exampleDatabase.dataChange,
-      this._filterChange,
+      /* this._filterChange, */
+      this._sort.sortChange,
     ];
 
     return Observable.merge(...displayDataChanges).map(() => {
-      return this._exampleDatabase.data.slice().filter((item: UserData) => {
-        let searchStr = (item.name + item.rating).toLowerCase();
-        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-      });
+      return this.getSortedData();
+      /* let data = this._exampleDatabase.data.slice();
+
+      if (this.filter != null && this.filter.length > 0) {
+        return data.filter((item: UserData) => {
+          let searchStr = (item.name + item.rating).toLowerCase();
+          return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        });
+      } */
+
+      /*       if (this._sort.active && this._sort.direction !== '') {
+              data = data.sort((a, b) => {
+                let propertyA: number | string;
+                let propertyB: number | string;
+                [propertyA, propertyB] = [a[this._sort.active], b[this._sort.active]];
+                //const valueA = propertyA==null||isNaN(+propertyA) ? propertyA : +propertyA;
+                //const valueB = propertyB!=null&&isNaN(+propertyB) ? propertyB : +propertyB;
+                let returnMe = 0;
+                if (propertyA === null && propertyB !== null) returnMe = -1;
+                else if (propertyA !== null && propertyB === null) returnMe = 1;
+                else if (propertyA < propertyB) returnMe = -1;
+                else if (propertyA > propertyB) returnMe = 1;
+                if (this._sort.direction === 'asc') returnMe = -1 * returnMe;
+                //const returnMe =  (valueA < valueB ? -1 : 1) * (this._sort.direction === 'desc' ? 1 : -1);
+                return returnMe;
+              });
+            } */
+
+
+
+    });
+  }
+  getSortedData(): UserData[] {
+    const data = this._exampleDatabase.data.slice();
+    if (!this._sort.active || this._sort.direction == '') { return data; }
+
+    return data.sort((a, b) => {
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this._sort.active) {
+        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
+        case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
+        case 'student_class': [propertyA, propertyB] = [a.student_class, b.student_class]; break;
+        case 'rating': [propertyA, propertyB] = [a.rating, b.rating]; break;
+      }
+
+      let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
     });
   }
 

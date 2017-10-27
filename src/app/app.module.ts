@@ -19,7 +19,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
 import { SchemeComponent } from './scheme/scheme.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { QuestPageComponent } from './quest-page/quest-page.component';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatSortModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,8 @@ import { MatTableModule } from '@angular/material';
     MatButtonModule,
     HttpModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   providers: [QuestionService],
   bootstrap: [AppComponent]

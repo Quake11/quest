@@ -1,29 +1,29 @@
 <div class="example-container mat-elevation-z8">
-  <div class="example-header">
+<!--   <div class="example-header">
     <mat-form-field floatPlaceholder="never">
       <input matInput #filter placeholder="Фильтр">
     </mat-form-field>
-  </div>
+  </div> -->
 
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="student_class">
-      <mat-header-cell *matHeaderCellDef> Класс </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Класс </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.student_class}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Имя </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="rating">
-      <mat-header-cell *matHeaderCellDef> Рейтинг </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Рейтинг </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.rating}}% </mat-cell>
     </ng-container>
 
