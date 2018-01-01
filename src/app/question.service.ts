@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class QuestionService {
 
+  constructor() { }
+
   private question = new BehaviorSubject<number>(null);
   currentQuestion = this.question.asObservable();
 
@@ -28,8 +30,6 @@ export class QuestionService {
     this.correctAnswers.next(this.correctAnswers.value + num);
   }
 
-  constructor() { }
-
   openQuestion(id: number) {
     this.question.next(id);
   }
@@ -48,13 +48,13 @@ export class QuestionService {
   }
 
   isQuestionsCompleted(id) {
-    return this.answeredQuestions[id] == true;
+    return this.answeredQuestions[id] === true;
   }
 
   countRemainingQuestions(questions) {
     let remaining: number = Object.keys(questions).length;
     questions.forEach(element => {
-      this.isQuestionsCompleted(element.id) ? remaining-- : remaining;
+      this.isQuestionsCompleted(element.id) ? remaining-- : remaining = remaining;
     });
     return remaining;
   }

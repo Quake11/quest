@@ -13,7 +13,6 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { QuestionComponent } from './question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { SchemeComponent } from './scheme/scheme.component';
@@ -25,7 +24,6 @@ import { MatTableModule, MatSortModule } from '@angular/material';
   declarations: [
     AppComponent,
     MenuItemComponent,
-    QuestionComponent,
     LoadingSpinnerComponent,
     SchemeComponent,
     DashboardComponent,
